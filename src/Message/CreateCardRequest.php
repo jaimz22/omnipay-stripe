@@ -22,6 +22,13 @@ class CreateCardRequest extends AbstractRequest
             $this->validate('card');
         }
 
+		if ($this->getEmail()) {
+			$data['email'] = $this->getEmail();
+		}
+		if ($this->getMetadata()) {
+			$data['metadata'] = $this->getMetadata();
+		}
+
         return $data;
     }
 
@@ -29,4 +36,14 @@ class CreateCardRequest extends AbstractRequest
     {
         return $this->endpoint.'/customers';
     }
+
+	public function getEmail()
+	{
+		return $this->getParameter('email');
+	}
+
+	public function setEmail($value)
+	{
+		return $this->setParameter('email', $value);
+	}
 }
